@@ -4,6 +4,8 @@ import React, { useEffect, useState, useCallback } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
+import { ClipLoader } from "react-spinners";
+
 import UserBox from "../../components/Userbox/UserBox";
 import { fetchList } from "../../store/actions";
 
@@ -44,7 +46,7 @@ const MainPage = (props) => {
 
   return (
     <div>
-      <div>{isLoading ? <p>Loading</p> : displayedList}</div>
+      <div>{isLoading ? <ClipLoader size={100} /> : displayedList}</div>
       <p
         className={styles.readMore}
         onClick={() => {

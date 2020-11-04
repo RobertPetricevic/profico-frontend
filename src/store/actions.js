@@ -11,7 +11,7 @@ export const fetchList = (page) => {
     let data;
 
     const response = await fetch(
-      `https://reqres.in/api/users?page=${page}&delay=1`
+      `https://reqres.in/api/users?page=${page}&delay=2`
     );
 
     if (!response.ok) {
