@@ -1,0 +1,10 @@
+.readMore {
+  border-bottom: 2px solid #0097cc;
+  font-weight: bold;
+  display: inline;
+  cursor: pointer;
+}
+
+.readMore:hover {
+  color: #0097cc;
+}

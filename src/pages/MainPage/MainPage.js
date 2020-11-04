@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React, { useEffect, useState, useCallback } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
 import UserBox from "../../components/Userbox/UserBox";
 import { fetchList } from "../../store/actions";
+
+import styles from "./styles.module.css";
 
 const MainPage = (props) => {
   const dispatch = useDispatch();
@@ -11,21 +15,23 @@ const MainPage = (props) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
+    console.log("getData");
     setError(null);
     setIsLoading(true);
     try {
-      await dispatch(fetchList());
+      await dispatch(fetchList(page));
     } catch (err) {
       setError(err.messsage);
     }
     setIsLoading(false);
-  };
+  }, [dispatch, page]);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   const displayedList = usersList.map((user) => (
     <UserBox
@@ -36,7 +42,19 @@ const MainPage = (props) => {
     />
   ));
 
-  return <div>{isLoading ? <p>Loading</p> : displayedList}</div>;
+  return (
+    <div>
+      <div>{isLoading ? <p>Loading</p> : displayedList}</div>
+      <p
+        className={styles.readMore}
+        onClick={() => {
+          setPage((prevNum) => prevNum + 1);
+        }}
+      >
+        read more
+      </p>
+    </div>
+  );
 };
 
 export default MainPage;
