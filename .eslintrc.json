@@ -5,6 +5,8 @@
     "prettier/prettier": "off",
     "no-unused-vars": "warn",
     "react/jsx-filename-extension": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/button-has-type": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   }
 }
