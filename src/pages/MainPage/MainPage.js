@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useState, useCallback } from "react";
@@ -7,6 +9,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { ClipLoader } from "react-spinners";
 
 import UserBox from "../../components/Userbox/UserBox";
+import SearchInput from "../../components/SearchInput/SearchInput";
+
 import { fetchList } from "../../store/actions";
 
 import styles from "./styles.module.css";
@@ -19,9 +23,10 @@ const MainPage = (props) => {
   const [isReadMore, setIsReadMore] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
+  const [searchText, setSearchText] = useState("");
+  console.log("searchText:", searchText);
 
   const getData = useCallback(async () => {
-    console.log("getData");
     setError(null);
     setIsLoading(true);
 
@@ -38,22 +43,38 @@ const MainPage = (props) => {
     setIsReadMore(false);
   }, [dispatch, page]);
 
+  const handleSearchList = (text) => {
+    if (text.trim().length >= 2) {
+      setSearchText(text.trim());
+    } else {
+      setSearchText("");
+    }
+  };
+
   useEffect(() => {
     getData();
   }, [getData]);
 
-  const displayedList = usersList.map((user) => (
-    <UserBox
-      key={user.id}
-      firstName={user.first_name}
-      lastName={user.last_name}
-      imgUrl={user.avatar}
-    />
-  ));
+  const displayedList = usersList.map((user) => {
+    if (
+      `${user.first_name.toLowerCase()} ${user.last_name.toLowerCase()}`.includes(
+        searchText.toLowerCase()
+      )
+    )
+      return (
+        <UserBox
+          key={user.id}
+          firstName={user.first_name}
+          lastName={user.last_name}
+          imgUrl={user.avatar}
+        />
+      );
+  });
 
   return (
     <div className={styles.mainPage}>
-      <div>
+      <SearchInput onSearch={handleSearchList} />
+      <div className={styles.mainContent}>
         {isLoading && !isReadMore ? <ClipLoader size={100} /> : displayedList}
       </div>
       {isReadMore ? (
