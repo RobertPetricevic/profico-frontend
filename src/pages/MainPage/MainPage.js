@@ -14,6 +14,7 @@ import SearchInput from "../../components/SearchInput/SearchInput";
 import { fetchList } from "../../store/actions";
 
 import styles from "./styles.module.css";
+import ModalForm from "../../components/ModalForm/ModalForm";
 
 const MainPage = (props) => {
   const dispatch = useDispatch();
@@ -73,6 +74,7 @@ const MainPage = (props) => {
 
   return (
     <div className={styles.mainPage}>
+      <ModalForm />
       <SearchInput onSearch={handleSearchList} />
       <div className={styles.mainContent}>
         {isLoading && !isReadMore ? <ClipLoader size={100} /> : displayedList}
