@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
+import UserBox from "../../components/Userbox/UserBox";
 import { fetchList } from "../../store/actions";
 
 const MainPage = (props) => {
@@ -27,7 +28,12 @@ const MainPage = (props) => {
   }, []);
 
   const displayedList = usersList.map((user) => (
-    <li key={user.id}>{user.email}</li>
+    <UserBox
+      key={user.id}
+      firstName={user.first_name}
+      lastName={user.last_name}
+      imgUrl={user.avatar}
+    />
   ));
 
   return <div>{isLoading ? <p>Loading</p> : displayedList}</div>;

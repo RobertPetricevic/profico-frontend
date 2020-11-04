@@ -10,6 +10,8 @@
     "jsx-a11y/label-has-associated-control": "off",
     "prefer-const": "warn",
     "no-useless-escape": "off",
+    "react/prop-types": "off",
+    "react/destructuring-assignment": "off",
     "no-useless-catch": "off"
   }
 }
