@@ -2,15 +2,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --blue: #0097cc;
-  --hoverBlue: #005b7c;
-  --darkGray: #1d1d1b;
-  --lightGray: #7f7f7f;
-  --lighterGray: #f2f2f2;
-  --red: #ff392e;
-}
-
 body {
   margin: 0;
   font-size: 1rem;
