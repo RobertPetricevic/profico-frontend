@@ -1,7 +1,8 @@
-import { LOGIN } from "./actions";
+import { LOGIN, FETCH_LIST } from "./actions";
 
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
+  usersList: [],
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +11,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
+      };
+    case FETCH_LIST:
+      return {
+        ...state,
+        usersList: action.data,
       };
     default:
       return state;

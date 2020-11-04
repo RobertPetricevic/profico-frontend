@@ -9,6 +9,7 @@
     "react/button-has-type": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "prefer-const": "warn",
-    "no-useless-escape": "off"
+    "no-useless-escape": "off",
+    "no-useless-catch": "off"
   }
 }
