@@ -16,6 +16,7 @@ const MainPage = (props) => {
   const usersList = useSelector((state) => state.usersList);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isReadMore, setIsReadMore] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
 
@@ -23,12 +24,18 @@ const MainPage = (props) => {
     console.log("getData");
     setError(null);
     setIsLoading(true);
+
+    if (page !== 1) {
+      setIsReadMore(true);
+    }
+
     try {
       await dispatch(fetchList(page));
     } catch (err) {
       setError(err.messsage);
     }
     setIsLoading(false);
+    setIsReadMore(false);
   }, [dispatch, page]);
 
   useEffect(() => {
@@ -45,16 +52,22 @@ const MainPage = (props) => {
   ));
 
   return (
-    <div>
-      <div>{isLoading ? <ClipLoader size={100} /> : displayedList}</div>
-      <p
-        className={styles.readMore}
-        onClick={() => {
-          setPage((prevNum) => prevNum + 1);
-        }}
-      >
-        read more
-      </p>
+    <div className={styles.mainPage}>
+      <div>
+        {isLoading && !isReadMore ? <ClipLoader size={100} /> : displayedList}
+      </div>
+      {isReadMore ? (
+        <ClipLoader />
+      ) : (
+        <p
+          className={styles.readMore}
+          onClick={() => {
+            setPage((prevNum) => prevNum + 1);
+          }}
+        >
+          read more
+        </p>
+      )}
     </div>
   );
 };
