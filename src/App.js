@@ -1,7 +1,14 @@
 import "./App.css";
 
+import { useSelector } from "react-redux";
+
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
+
 function App() {
-  return <div className="App">PROFICOOOOOOOooo</div>;
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+  return <div className="App">{isLoggedIn ? <MainPage /> : <LoginPage />}</div>;
 }
 
 export default App;

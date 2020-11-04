@@ -2,7 +2,7 @@
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier", "react", "react-hooks", "import", "jsx-a11y"],
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": "off",
     "no-unused-vars": "warn",
     "react/jsx-filename-extension": "off",
     "react/react-in-jsx-scope": "off"
