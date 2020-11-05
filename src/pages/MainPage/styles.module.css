@@ -18,3 +18,26 @@
 .readMore:hover {
   color: #0097cc;
 }
+
+.errorTxt {
+  color: red;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+}
+
+.tryAgain {
+  padding: 0.5em 0.9em;
+  border-radius: 10px;
+  font-weight: 800;
+  border: none;
+  background-color: #0097cc;
+  cursor: pointer;
+  outline: none;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.tryAgain:hover,
+.tryAgain:focus {
+  background-color: #005b7c;
+}

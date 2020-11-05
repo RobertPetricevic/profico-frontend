@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable array-callback-return */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -25,6 +26,7 @@ const MainPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isReadMore, setIsReadMore] = useState(false);
   const [error, setError] = useState(null);
+  console.log("error:", error);
   const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState("");
 
@@ -39,7 +41,9 @@ const MainPage = () => {
     try {
       await dispatch(fetchList(page));
     } catch (err) {
-      setError(err.messsage);
+      console.log("err.message:", err);
+
+      setError(err.message);
     }
     setIsLoading(false);
     setIsReadMore(false);
@@ -78,21 +82,36 @@ const MainPage = () => {
       {isModalOn && <ModalForm />}
       <SearchInput onSearch={handleSearchList} />
       <AddUserBtn />
-      <div className={styles.mainContent}>
-        {isLoading && !isReadMore ? <ClipLoader size={100} /> : displayedList}
-      </div>
-      {isReadMore ? (
-        <ClipLoader />
+      {error ? (
+        <>
+          <p className={styles.errorTxt}>{error}</p>
+          <div
+            className={styles.tryAgain}
+            onClick={() => {
+              getData();
+            }}
+          >
+            {isLoading ? <ClipLoader size={10} /> : "Try Again"}
+          </div>
+        </>
       ) : (
-        <p
-          className={styles.readMore}
-          onClick={() => {
-            setPage((prevNum) => prevNum + 1);
-          }}
-        >
-          read more
-        </p>
+        <div className={styles.mainContent}>
+          {isLoading && !isReadMore ? <ClipLoader size={100} /> : displayedList}
+        </div>
       )}
+      {!error &&
+        (isReadMore ? (
+          <ClipLoader />
+        ) : (
+          <p
+            className={styles.readMore}
+            onClick={() => {
+              setPage((prevNum) => prevNum + 1);
+            }}
+          >
+            read more
+          </p>
+        ))}
     </div>
   );
 };
