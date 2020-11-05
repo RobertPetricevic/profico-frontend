@@ -11,6 +11,7 @@ import { ClipLoader } from "react-spinners";
 import UserBox from "../../components/Userbox/UserBox";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import ModalForm from "../../components/ModalForm/ModalForm";
+import AddUserBtn from "../../components/AddUserBtn/AddUserBtn";
 
 import { fetchList } from "../../store/actions";
 
@@ -26,7 +27,6 @@ const MainPage = (props) => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState("");
-  console.log("searchText:", searchText);
 
   const getData = useCallback(async () => {
     setError(null);
@@ -77,6 +77,7 @@ const MainPage = (props) => {
     <div className={styles.mainPage}>
       {isModalOn && <ModalForm />}
       <SearchInput onSearch={handleSearchList} />
+      <AddUserBtn />
       <div className={styles.mainContent}>
         {isLoading && !isReadMore ? <ClipLoader size={100} /> : displayedList}
       </div>

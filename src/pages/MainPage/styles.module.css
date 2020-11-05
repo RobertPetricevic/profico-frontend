@@ -1,10 +1,10 @@
 .mainPage {
   position: relative;
-  height: 100%;
+  padding-bottom: 60px;
 }
 
 .mainContent {
-  padding: 30px;
+  padding-top: 30px;
 }
 
 .readMore {
