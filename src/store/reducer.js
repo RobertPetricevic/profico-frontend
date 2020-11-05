@@ -1,8 +1,9 @@
-import { LOGIN, FETCH_LIST, TOGGLE_MODAL } from "./actions";
+/* eslint-disable no-case-declarations */
+import { LOGIN, FETCH_LIST, TOGGLE_MODAL, ADD_USER } from "./actions";
 
 const initialState = {
   isLoggedIn: false,
-  isModalOn: false,
+  isModalOn: true,
   usersList: [],
 };
 
@@ -22,6 +23,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         usersList: action.data,
+      };
+    case ADD_USER:
+      const newUsers = [...state.usersList];
+      newUsers.unshift(action.user);
+      return {
+        ...state,
+        usersList: newUsers,
       };
     default:
       return state;

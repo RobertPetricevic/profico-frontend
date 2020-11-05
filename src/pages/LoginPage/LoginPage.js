@@ -12,7 +12,6 @@ const LoginPage = (props) => {
   const dispatch = useDispatch();
 
   const [error, setError] = useState(null);
-  console.log("error:", error);
 
   return (
     <div className={styles.loginPage}>
@@ -30,7 +29,7 @@ const LoginPage = (props) => {
           }
         }}
         validate={(values) => {
-          let errors = {};
+          const errors = {};
 
           if (!values.email) {
             errors.email = "Email is required";
@@ -59,7 +58,7 @@ const LoginPage = (props) => {
                 className={styles.validationErrText}
                 name="email"
               />
-              <Field type="text" name="email" />
+              <Field type="text" name="email" id="email" />
             </div>
             <div className={styles.inputBox}>
               <label htmlFor="password">Password</label>
@@ -69,7 +68,7 @@ const LoginPage = (props) => {
                 name="password"
               />
 
-              <Field type="password" name="password" />
+              <Field type="password" name="password" id="password" />
             </div>
             <button className={styles.inputBtn}>
               {isSubmitting ? <ClipLoader size={10} /> : "Login"}
@@ -80,36 +79,5 @@ const LoginPage = (props) => {
     </div>
   );
 };
-
-// const FormikLoginPage = withFormik({
-//   mapPropsToValues() {
-//     return {
-//       email: "",
-//       password: "",
-//     };
-//   },
-//   handleSubmit: async (values, { setSubmitting }) => {
-//     await dispatch(fetchList(page));
-//   },
-//   validate: (values) => {
-//     let errors = [];
-
-//     if (!values.email) {
-//       errors.email = "Email is required";
-//     } else if (
-//       !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-//         values.email
-//       )
-//     ) {
-//       errors.email = "Email not valid";
-//     }
-
-//     if (!values.password) {
-//       errors.password = "Password is required";
-//     } else if (values.password.length < 8) {
-//       errors.password = "Password must be at least 8 characters long";
-//     }
-//   },
-// })(LoginPage);
 
 export default LoginPage;

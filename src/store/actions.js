@@ -2,11 +2,10 @@
 export const LOGIN = "LOGIN";
 export const FETCH_LIST = "FETCH_LIST";
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
-export const STORE_USER = "STORE_USER";
+export const ADD_USER = "ADD_USER";
 
 export const login = (email, password) => {
   return async (dispatch) => {
-    // console.log(email + password);
     try {
       const response = await fetch(`https://reqres.in/api/login`, {
         method: "POST",
@@ -21,14 +20,48 @@ export const login = (email, password) => {
 
       const resData = await response.json();
 
-      console.log(resData.error);
-
       if (!response.ok) {
-        console.log("ERR");
         throw new Error(resData.error);
       }
 
       dispatch({ type: LOGIN });
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const addUser = (firstName, lastName) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`https://reqres.in/api/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          avatar:
+            "https://gravatar.com/avatar/7c5815c863e2a2e4ff389c5f3f1e515a?s=400&d=robohash&r=x",
+        }),
+      });
+
+      const resData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(resData.error);
+      }
+
+      dispatch({
+        type: ADD_USER,
+        user: {
+          first_name: resData.firstName,
+          last_name: resData.lastName,
+          avatar: resData.avatar,
+          id: resData.id,
+        },
+      });
     } catch (err) {
       throw err;
     }

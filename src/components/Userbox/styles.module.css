@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  width: 250px;
+  width: 300px;
+  min-width: fit-content;
   margin: 0 auto 20px;
   border-radius: 30px;
   -webkit-box-shadow: 1px 1px 18px 8px rgba(161, 153, 161, 1);

@@ -13,8 +13,8 @@ function App() {
 
   return (
     <div className="App">
-      {isLoggedIn ? <MainPage /> : <LoginPage />}
-      {/* <MainPage /> */}
+      {/* {isLoggedIn ? <MainPage /> : <LoginPage />} */}
+      <MainPage />
     </div>
   );
 }
