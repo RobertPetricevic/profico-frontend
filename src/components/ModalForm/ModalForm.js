@@ -10,7 +10,7 @@ import { toggleModal, addUser } from "../../store/actions";
 
 import styles from "./styles.module.css";
 
-const ModalForm = (props) => {
+const ModalForm = () => {
   const dispatch = useDispatch();
 
   const [error, setError] = useState(null);
@@ -34,7 +34,7 @@ const ModalForm = (props) => {
           }
         }}
         validate={(values) => {
-          let errors = {};
+          const errors = {};
 
           if (!values.firstName) {
             errors.firstName = "First name is required";
@@ -63,6 +63,7 @@ const ModalForm = (props) => {
       >
         {({ isSubmitting, setFieldValue, errors }) => (
           <Form className={styles.modalContent}>
+            {error && <p className={styles.submitErrText}>{error}</p>}
             <p
               className={styles.exitBtn}
               onClick={() => {
@@ -158,7 +159,5 @@ const ModalForm = (props) => {
     </div>
   );
 };
-
-ModalForm.propTypes = {};
 
 export default ModalForm;

@@ -8,7 +8,7 @@ import { login } from "../../store/actions";
 
 import styles from "./styles.module.css";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const dispatch = useDispatch();
 
   const [error, setError] = useState(null);

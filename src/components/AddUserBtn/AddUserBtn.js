@@ -5,7 +5,7 @@ import { toggleModal } from "../../store/actions";
 
 import styles from "./styles.module.css";
 
-const AddUserBtn = (props) => {
+const AddUserBtn = () => {
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +19,5 @@ const AddUserBtn = (props) => {
     </button>
   );
 };
-
-AddUserBtn.propTypes = {};
 
 export default AddUserBtn;

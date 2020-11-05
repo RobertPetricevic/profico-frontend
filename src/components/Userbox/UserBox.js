@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./styles.module.css";
 
@@ -12,6 +13,10 @@ const UserBox = (props) => {
   );
 };
 
-UserBox.propTypes = {};
+UserBox.propTypes = {
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  imgUrl: PropTypes.string.isRequired,
+};
 
 export default UserBox;

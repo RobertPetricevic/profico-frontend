@@ -3,7 +3,7 @@ import { LOGIN, FETCH_LIST, TOGGLE_MODAL, ADD_USER } from "./actions";
 
 const initialState = {
   isLoggedIn: false,
-  isModalOn: true,
+  isModalOn: false,
   usersList: [],
 };
 

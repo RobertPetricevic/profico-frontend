@@ -17,7 +17,7 @@ import { fetchList } from "../../store/actions";
 
 import styles from "./styles.module.css";
 
-const MainPage = (props) => {
+const MainPage = () => {
   const dispatch = useDispatch();
   const usersList = useSelector((state) => state.usersList);
   const isModalOn = useSelector((state) => state.isModalOn);

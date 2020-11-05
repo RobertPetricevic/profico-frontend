@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import styles from "./styles.module.css";
 
@@ -25,6 +26,8 @@ const SearchInput = (props) => {
   );
 };
 
-SearchInput.propTypes = {};
+SearchInput.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};
 
 export default SearchInput;
