@@ -10,15 +10,16 @@ import { ClipLoader } from "react-spinners";
 
 import UserBox from "../../components/Userbox/UserBox";
 import SearchInput from "../../components/SearchInput/SearchInput";
+import ModalForm from "../../components/ModalForm/ModalForm";
 
 import { fetchList } from "../../store/actions";
 
 import styles from "./styles.module.css";
-import ModalForm from "../../components/ModalForm/ModalForm";
 
 const MainPage = (props) => {
   const dispatch = useDispatch();
   const usersList = useSelector((state) => state.usersList);
+  const isModalOn = useSelector((state) => state.isModalOn);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isReadMore, setIsReadMore] = useState(false);
@@ -74,7 +75,7 @@ const MainPage = (props) => {
 
   return (
     <div className={styles.mainPage}>
-      <ModalForm />
+      {isModalOn && <ModalForm />}
       <SearchInput onSearch={handleSearchList} />
       <div className={styles.mainContent}>
         {isLoading && !isReadMore ? <ClipLoader size={100} /> : displayedList}

@@ -1,9 +1,14 @@
 /* eslint-disable no-undef */
 export const LOGIN = "LOGIN";
 export const FETCH_LIST = "FETCH_LIST";
+export const TOGGLE_MODAL = "TOGGLE_MODAL";
 
 export const login = () => {
   return { type: LOGIN };
+};
+
+export const toggleModal = () => {
+  return { type: TOGGLE_MODAL };
 };
 
 export const fetchList = (page) => {

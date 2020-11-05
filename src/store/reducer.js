@@ -1,7 +1,8 @@
-import { LOGIN, FETCH_LIST } from "./actions";
+import { LOGIN, FETCH_LIST, TOGGLE_MODAL } from "./actions";
 
 const initialState = {
   isLoggedIn: true,
+  isModalOn: true,
   usersList: [],
 };
 
@@ -11,6 +12,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
+      };
+    case TOGGLE_MODAL:
+      return {
+        ...state,
+        isModalOn: !state.isModalOn,
       };
     case FETCH_LIST:
       return {

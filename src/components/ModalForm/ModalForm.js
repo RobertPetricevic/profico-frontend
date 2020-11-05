@@ -2,13 +2,24 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from "react";
 
+import { useDispatch } from "react-redux";
+
+import { toggleModal } from "../../store/actions";
+
 import styles from "./styles.module.css";
 
 const ModalForm = (props) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.modalScreen}>
       <form className={styles.modalContent}>
-        <p className={styles.exitBtn} onClick={() => {}}>
+        <p
+          className={styles.exitBtn}
+          onClick={() => {
+            dispatch(toggleModal());
+          }}
+        >
           +
         </p>
         <div className={styles.inputBox}>
