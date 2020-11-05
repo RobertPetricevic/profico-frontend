@@ -2,9 +2,37 @@
 export const LOGIN = "LOGIN";
 export const FETCH_LIST = "FETCH_LIST";
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
+export const STORE_USER = "STORE_USER";
 
-export const login = () => {
-  return { type: LOGIN };
+export const login = (email, password) => {
+  return async (dispatch) => {
+    // console.log(email + password);
+    try {
+      const response = await fetch(`https://reqres.in/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const resData = await response.json();
+
+      console.log(resData.error);
+
+      if (!response.ok) {
+        console.log("ERR");
+        throw new Error(resData.error);
+      }
+
+      dispatch({ type: LOGIN });
+    } catch (err) {
+      throw err;
+    }
+  };
 };
 
 export const toggleModal = () => {
@@ -16,7 +44,7 @@ export const fetchList = (page) => {
     let data;
 
     const response = await fetch(
-      `https://reqres.in/api/users?page=${page}&delay=2`
+      `https://reqres.in/api/users?page=${page}&delay=1`
     );
 
     if (!response.ok) {

@@ -69,3 +69,12 @@
 .exitBtn:hover {
   color: gray;
 }
+
+@media (max-width: 550px) {
+  .modalContent {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: -50px;
+  }
+}

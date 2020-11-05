@@ -9,9 +9,14 @@ function App() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const usersList = useSelector((state) => state.usersList);
 
-  // console.log(usersList);
+  // console.log(isLoggedIn);
 
-  return <div className="App">{isLoggedIn ? <MainPage /> : <LoginPage />}</div>;
+  return (
+    <div className="App">
+      {isLoggedIn ? <MainPage /> : <LoginPage />}
+      {/* <MainPage /> */}
+    </div>
+  );
 }
 
 export default App;

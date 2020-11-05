@@ -1,6 +1,7 @@
 .mainPage {
   position: relative;
   padding-bottom: 60px;
+  min-height: 100%;
 }
 
 .mainContent {
